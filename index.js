@@ -25,6 +25,8 @@ app.get('/', (req, res) =>{
 
 app.use('/users', useRoute); 
 
+app.use(express.static('public')); 
+
 app.listen(port, () => {
     console.log('Exambel app listening'); 
 })
