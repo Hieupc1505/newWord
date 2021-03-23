@@ -2,6 +2,8 @@ const express = require('express');
 const app = express(); 
 const bodyParser = require('body-parser'); 
 const useRoute = require('./routes/rou'); 
+const cookieParser = require('cookie-parser'); 
+
 const port = 3000; 
 
 app.use(bodyParser.json()); 
@@ -23,6 +25,7 @@ app.get('/', (req, res) =>{
     }); 
 })
 
+app.use(cookieParser())
 app.use('/users', useRoute); 
 
 app.use(express.static('public')); 
