@@ -1,9 +1,12 @@
+require('dotenv').config(); 
+console.log(process.env.SESSION_SECRET)
 const express = require('express'); 
 const app = express(); 
 const bodyParser = require('body-parser'); 
 const useRoute = require('./routes/rou'); 
 const cookieParser = require('cookie-parser'); 
 const authRouter = require('./routes/authrouter')
+const usePro = require('./routes/rou_pro')
 const port = 3000; 
 
 app.use(bodyParser.json()); 
@@ -17,7 +20,7 @@ var users = db.get('users').value();
 
 app.set('view engine', 'pug'); 
 app.set('views', './views'); 
-app.use(cookieParser()); 
+app.use(cookieParser(process.env.SESSION_SECRET)); 
 
 
 app.get('/', (req, res) =>{
@@ -30,6 +33,7 @@ app.get('/', (req, res) =>{
 app.use('/users',middle.requireauth,  useRoute); 
 app.use('/auth', authRouter); 
 app.use(express.static('public')); 
+app.use('/pro', usePro); 
 
 app.listen(port, () => {
     console.log('Exambel app listening'); 
