@@ -1,0 +1,18 @@
+extends ../layout/layout 
+
+block content 
+    
+
+    each pro in pros
+        .context(style="display: flex; flex-wrap: wrap;")
+            .card(style='width: 25%;')
+                img.card-img-top(src=pro.image, alt='...')
+                .card-body
+                    h5.card-title=pro.name
+                    
+                ul.list-group.list-group-flush
+                    li.list-group-item=pro.describer
+                    
+                a.btn.btn-primary(href="/cart/add/" + pro.id) Add to cart
+
+

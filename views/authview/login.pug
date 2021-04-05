@@ -1,0 +1,22 @@
+extends ../layout/layout
+
+block content
+    h1 Login
+    br
+    if errors 
+        each error in errors
+            .alert.alert-danger=error
+
+    form(action="/auth/login", method="POST")
+        .form-group
+            lable Email
+            input#email.form-control(type="text", name="email",
+            value = values? values.email : "")
+        .form-group   
+            lable Password 
+            input#password.form-control(type="password", name="password", 
+            value = values? values.password : "")
+        .form-group 
+            lable(for="avata") Avata
+            input#avata.form-control(type="file", name="avata", enctype="multipart/form-data")
+        button.btn.btn-primary Login
